@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Auth Demo</title>
+</head>
+<body>
+  <h2>Register</h2>
+  <input id="r-email" placeholder="Email">
+  <input id="r-pass" type="password" placeholder="Password">
+  <button onclick="register()">Register</button>
+
+  <h2>Login</h2>
+  <input id="l-email" placeholder="Email">
+  <input id="l-pass" type="password" placeholder="Password">
+  <button onclick="login()">Login</button>
+
+  <pre id="output"></pre>
+
+  <script>
+    async function register() {
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: document.getElementById("r-email").value,
+          password: document.getElementById("r-pass").value
+        })
+      });
+      output.innerText = await res.text();
+    }
+
+    async function login() {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: document.getElementById("l-email").value,
+          password: document.getElementById("l-pass").value
+        })
+      });
+      output.innerText = await res.text();
+    }
+  </script>
+
+  <h2>Registered Users</h2>
+<button onclick="loadUsers()">Refresh Users</button>
+<table border="1">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Verified</th>
+    </tr>
+  </thead>
+  <tbody id="users-table"></tbody>
+</table>
+
+<script>
+async function loadUsers() {
+  const res = await fetch("/api/auth/dashboard/users");
+
+  const users = await res.json();
+  const tbody = document.getElementById("users-table");
+  tbody.innerHTML = "";
+  users.forEach(u => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${u.email}</td><td>${u.verified}</td>`;
+    tbody.appendChild(tr);
+  });
+}
+</script>
+
+</body>
+</html>
