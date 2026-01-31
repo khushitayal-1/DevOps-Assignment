@@ -17,7 +17,7 @@ jobs:
       # 2. Build backend Docker image
       - name: Build backend image
         run: |
-          docker build -t backend-app ./backend
+          docker build -t backend-app ./docker-compose-ass/backend
 
       # 3. Build frontend Docker image
       - name: Build frontend image
