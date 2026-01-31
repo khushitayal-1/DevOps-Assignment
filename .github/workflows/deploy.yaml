@@ -1,4 +1,4 @@
-name: Test Pipeline
+name: Docker Build Pipeline
 
 on:
   push:
@@ -6,9 +6,20 @@ on:
       - main
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Print message
-        run: echo "GitHub Actions is working!"
+      # 1. Checkout repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Build backend Docker image
+      - name: Build backend image
+        run: |
+          docker build -t backend-app ./backend
+
+      # 3. Build frontend Docker image
+      - name: Build frontend image
+        run: |
+          docker build -t frontend-app ./frontend
