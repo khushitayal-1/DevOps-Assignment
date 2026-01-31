@@ -11,7 +11,8 @@
 
    <script>
     function increase() {
-        fetch("/increment", { method: "POST" })
+        fetch("http://localhost:5000/increment", { method: "POST" })
+
             .then(res => res.json())
             .then(data => {
                 document.getElementById("count").innerText =
