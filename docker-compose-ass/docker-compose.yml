@@ -1,18 +1,15 @@
-
-
-
 version: "3.9"
 
 services:
   backend:
-    build: ./backend
+    image: 072583797267.dkr.ecr.eu-north-1.amazonaws.com/backend-app:latest
     ports:
       - "5000:5000"
 
   frontend:
-    build: ./frontend
+    image: 072583797267.dkr.ecr.eu-north-1.amazonaws.com/frontend-app:latest
     environment:
-    - BACKEND_URL=http://backend:5000
+      - BACKEND_URL=http://backend:5000
     ports:
       - "3000:80"
     depends_on:
