@@ -11,7 +11,8 @@
 
     <script>
         function increase() {
-            fetch("http://13.60.181.181:5000/increment", { method: "POST" })
+            fetch("http://backend:5000/increment", { method: "POST" })
+
 
                 .then(res => res.json())
                 .then(data => {
