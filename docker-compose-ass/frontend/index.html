@@ -9,17 +9,16 @@
 
     <button onclick="increase()">Increase</button>
 
-    <script>
-        function increase() {
-            fetch("http://backend:5000/increment", { method: "POST" })
+   <script>
+    function increase() {
+        fetch("/increment", { method: "POST" })
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("count").innerText =
+                    "Count: " + data.count;
+            });
+    }
+</script>
 
-
-                .then(res => res.json())
-                .then(data => {
-                    document.getElementById("count").innerText =
-                        "Count: " + data.count;
-                });
-        }
-    </script>
 </body>
 </html>
