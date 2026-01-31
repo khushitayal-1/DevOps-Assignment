@@ -1,0 +1,14 @@
+name: Test Pipeline
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print message
+        run: echo "GitHub Actions is working!"
