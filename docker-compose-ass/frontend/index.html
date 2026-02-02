@@ -10,16 +10,18 @@
     <button onclick="increase()">Increase</button>
 
    <script>
-    function increase() {
-        fetch("http://localhost:5000/increment", { method: "POST" })
-
-            .then(res => res.json())
-            .then(data => {
-                document.getElementById("count").innerText =
-                    "Count: " + data.count;
-            });
-    }
+  function increase() {
+    fetch("http://http://13.60.181.181/:5000/increment", {
+      method: "POST"
+    })
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("count").innerText =
+        "Count: " + data.count;
+    });
+  }
 </script>
+
 
 </body>
 </html>
